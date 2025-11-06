@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from 'react';
+import Head from 'next/head';
 import { motion } from 'framer-motion';
 import { Sidebar } from '@/components/Sidebar';
 import { CreateCampaignModal } from '@/components/CreateCampaignModal';
@@ -45,6 +46,67 @@ export default function ServicesPage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [selectedService, setSelectedService] = useState(null);
+
+  const servicesSchema = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": "Application Development Services",
+    "description": "Professional web, mobile, and desktop application development services",
+    "provider": {
+      "@type": "Organization",
+      "name": "Softiwo",
+      "url": "https://softiwo.com"
+    },
+    "serviceType": [
+      "Web Application Development",
+      "Mobile App Development (iOS & Android)", 
+      "Desktop Application Development",
+      "Custom Software Development",
+      "UI/UX Design Services",
+      "API Development & Integration"
+    ],
+    "areaServed": "Worldwide",
+    "offers": [
+      {
+        "@type": "Offer",
+        "name": "Starter Package",
+        "description": "Perfect for small businesses and MVPs",
+        "price": "5000",
+        "priceCurrency": "USD",
+        "priceSpecification": {
+          "@type": "PriceSpecification",
+          "minPrice": "5000",
+          "maxPrice": "15000",
+          "priceCurrency": "USD"
+        }
+      },
+      {
+        "@type": "Offer", 
+        "name": "Professional Package",
+        "description": "Advanced features for growing businesses",
+        "price": "15000",
+        "priceCurrency": "USD",
+        "priceSpecification": {
+          "@type": "PriceSpecification",
+          "minPrice": "15000", 
+          "maxPrice": "35000",
+          "priceCurrency": "USD"
+        }
+      },
+      {
+        "@type": "Offer",
+        "name": "Enterprise Package", 
+        "description": "Complex solutions for large organizations",
+        "price": "35000",
+        "priceCurrency": "USD",
+        "priceSpecification": {
+          "@type": "PriceSpecification",
+          "minPrice": "35000",
+          "priceCurrency": "USD"
+        }
+      }
+    ]
+  };
 
   const handleCreateProject = (projectData) => {
     console.log('Creating project:', projectData);
@@ -100,8 +162,25 @@ export default function ServicesPage() {
   ];
 
   return (
-    <div className="flex h-screen bg-gray-50 dark:bg-gray-900 overflow-hidden">
-      <Sidebar />
+    <>
+      <Head>
+        <title>Our Services - Professional App Development | Softiwo</title>
+        <meta name="description" content="Comprehensive application development services including web apps, mobile apps (iOS/Android), desktop software, and custom solutions. Flexible pricing from $5K to $75K+." />
+        <meta name="keywords" content="app development services, web application development, mobile app development, iOS app development, Android app development, desktop software, custom development, software consulting, Softiwo services" />
+        <meta property="og:title" content="Professional Application Development Services | Softiwo" />
+        <meta property="og:description" content="Transform your ideas into powerful applications. Web, mobile & desktop app development with flexible pricing and expert team." />
+        <meta property="og:type" content="service" />
+        <meta property="og:url" content="https://softiwo.com/services" />
+        <link rel="canonical" href="https://softiwo.com/services" />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(servicesSchema),
+          }}
+        />
+      </Head>
+      <div className="flex h-screen bg-gray-50 dark:bg-gray-900 overflow-hidden">
+        <Sidebar />
       {isSidebarOpen && (
         <Sidebar 
           isMobile={true} 
@@ -348,5 +427,6 @@ export default function ServicesPage() {
         onSubmit={handleCreateProject}
       />
     </div>
+    </>
   );
 }
