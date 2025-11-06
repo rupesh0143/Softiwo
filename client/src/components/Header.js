@@ -8,6 +8,7 @@ import { Switch } from '@/components/ui/switch';
 import { useTheme } from '@/contexts/ThemeContext';
 import { Moon, Sun, Menu, X } from 'lucide-react';
 import { useState } from 'react';
+import Image from 'next/image';
 
 export function Header() {
   const { theme, toggleTheme } = useTheme();
@@ -23,15 +24,17 @@ export function Header() {
   return (
     <header className="sticky top-0 z-50 w-full border-b border-gray-200/50 bg-white/80 backdrop-blur-md dark:border-gray-800/50 dark:bg-gray-950/80">
       <div className="container mx-auto flex h-14 sm:h-16 items-center justify-between px-3 sm:px-4 lg:px-6">
-        <Link href="/" className="flex items-center space-x-2 min-w-0 flex-shrink-0">
-          <motion.div
-            className="h-6 w-6 sm:h-8 sm:w-8 rounded-lg bg-gradient-to-br from-blue-600 to-purple-600 flex-shrink-0"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          />
-          <span className="text-lg sm:text-xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent truncate">
+        <Link href="/" className="flex-shrink-0 flex items-center">
+            <Image
+            src="/Softiwo01.png"
+            width={130}
+            height={50}
+            alt='Softiwo logo'
+            />
+
+          {/* <span className="text-lg sm:text-xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent truncate">
             Softiwo
-          </span>
+          </span> */}
         </Link>
 
         {/* Desktop Navigation */}

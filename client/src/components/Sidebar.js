@@ -15,6 +15,7 @@ import {
   X,
   Zap
 } from 'lucide-react';
+import Image from 'next/image';
 
 const sidebarItems = [
   {
@@ -52,12 +53,12 @@ export function Sidebar({ className, isMobile = false, onClose }) {
       <div className="px-3 sm:px-4 py-2">
         <div className="flex items-center justify-between mb-6 sm:mb-8">
           <div className="flex items-center space-x-3 min-w-0">
-            <div className="h-8 w-8 sm:h-10 sm:w-10 rounded-xl bg-gradient-to-br from-blue-500 via-purple-500 to-indigo-600 shrink-0 shadow-lg" />
-            <h2 className="text-lg sm:text-xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 bg-clip-text text-transparent truncate">
-              <Link href="/">
-              Softiwo
-              </Link>
-            </h2>
+            <Image
+             src="/Softiwo01.png"
+             width={130}
+             height={50}
+             alt='Softiwo logo'
+            />
           </div>
           {isMobile && onClose && (
             <button
