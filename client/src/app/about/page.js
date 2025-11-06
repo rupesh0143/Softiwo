@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from 'react';
+import Head from 'next/head';
 import { motion } from 'framer-motion';
 import { Sidebar } from '@/components/Sidebar';
 import { Button } from '@/components/ui/button';
@@ -34,43 +35,43 @@ export default function AboutUsPage() {
 
   const teamMembers = [
     {
-      name: 'Alex Johnson',
+      name: 'Shashank Meena',
       role: 'Founder & CEO',
-      expertise: 'Full-Stack Development, Product Strategy',
-      experience: '8+ years',
+      expertise: 'Strategic Leadership, Business Development',
+      experience: '5+ years',
       image: '/api/placeholder/120/120',
-      bio: 'Passionate about creating innovative solutions that make a difference. Led development of 100+ successful applications.',
-      skills: ['Leadership', 'Strategy', 'Full-Stack', 'Product Management'],
+      bio: 'Visionary leader and founder of Softiwo. Passionate about transforming innovative ideas into successful digital solutions that make a real impact.',
+      skills: ['Leadership', 'Strategy', 'Business Development', 'Vision Planning'],
       social: { linkedin: '#', github: '#', twitter: '#' }
     },
     {
-      name: 'Sarah Chen',
-      role: 'Lead Frontend Developer',
-      expertise: 'React, Vue.js, UI/UX Design',
-      experience: '6+ years',
+      name: 'Piyush Singh',
+      role: 'Managing Director',
+      expertise: 'Operations Management, Strategic Planning',
+      experience: '5+ years',
       image: '/api/placeholder/120/120',
-      bio: 'Expert in creating beautiful, responsive user interfaces. Believes great design is invisible but impactful.',
-      skills: ['React', 'Vue.js', 'UI/UX', 'TypeScript'],
+      bio: 'Strategic operations leader ensuring seamless project execution and organizational excellence. Drives growth and operational efficiency across all departments.',
+      skills: ['Operations', 'Management', 'Strategy', 'Process Optimization'],
       social: { linkedin: '#', github: '#', dribbble: '#' }
     },
     {
-      name: 'Michael Rodriguez',
+      name: 'Anurag Kaushik',
       role: 'Senior Backend Engineer',
       expertise: 'Node.js, Python, Cloud Architecture',
-      experience: '7+ years',
+      experience: '5+ years',
       image: '/api/placeholder/120/120',
-      bio: 'Specializes in scalable backend systems and cloud infrastructure. Loves solving complex technical challenges.',
+      bio: 'Expert backend architect specializing in scalable systems and cloud infrastructure. Passionate about solving complex technical challenges and performance optimization.',
       skills: ['Node.js', 'Python', 'AWS', 'MongoDB'],
       social: { linkedin: '#', github: '#', medium: '#' }
     },
     {
-      name: 'Emily Davis',
-      role: 'Mobile App Developer',
-      expertise: 'React Native, Flutter, iOS/Android',
+      name: 'Gazal Behl',
+      role: 'Human Resource',
+      expertise: 'Talent Management, Employee Relations',
       experience: '5+ years',
       image: '/api/placeholder/120/120',
-      bio: 'Creates seamless mobile experiences across platforms. Passionate about mobile-first design and performance.',
-      skills: ['React Native', 'Flutter', 'Swift', 'Kotlin'],
+      bio: 'Dedicated HR professional focused on building a thriving workplace culture. Ensures our team has the support and resources needed for professional growth.',
+      skills: ['Recruitment', 'Employee Relations', 'Performance Management', 'Training'],
       social: { linkedin: '#', github: '#', twitter: '#' }
     }
   ];
@@ -144,9 +145,46 @@ export default function AboutUsPage() {
     return colorMap[color] || colorMap.blue;
   };
 
+  const aboutSchema = {
+    "@context": "https://schema.org",
+    "@type": "AboutPage",
+    "mainEntity": {
+      "@type": "Organization",
+      "name": "Softiwo",
+      "description": "Professional application development company founded in 2019, specializing in web, mobile, and desktop applications with 200+ successful projects",
+      "foundingDate": "2019",
+      "numberOfEmployees": "15+",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "123 Tech Street",
+        "addressLocality": "Silicon Valley",
+        "addressRegion": "CA", 
+        "postalCode": "94000",
+        "addressCountry": "US"
+      }
+    }
+  };
+
   return (
-    <div className="flex h-screen bg-gray-50 dark:bg-gray-900 overflow-hidden">
-      <Sidebar />
+    <>
+      <Head>
+        <title>About Us - Professional Development Team | Softiwo</title>
+        <meta name="description" content="Meet the Softiwo team - passionate developers with 5+ years experience, 200+ successful projects, and 98% client satisfaction. Learn our story and values." />
+        <meta name="keywords" content="about Softiwo, development team, company history, our story, experienced developers, app development company, team members, company values, mission" />
+        <meta property="og:title" content="About Softiwo - Professional Application Development Team" />
+        <meta property="og:description" content="Discover our journey from startup to trusted development partner. Meet our talented team and learn about our commitment to excellence." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://softiwo.com/about" />
+        <link rel="canonical" href="https://softiwo.com/about" />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(aboutSchema),
+          }}
+        />
+      </Head>
+      <div className="flex h-screen bg-gray-50 dark:bg-gray-900 overflow-hidden">
+        <Sidebar />
       {isSidebarOpen && (
         <Sidebar 
           isMobile={true} 
@@ -434,5 +472,6 @@ export default function AboutUsPage() {
         </main>
       </div>
     </div>
+    </>
   );
 }

@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from 'react';
+import Head from 'next/head';
 import { motion } from 'framer-motion';
 import { Sidebar } from '@/components/Sidebar';
 import { Button } from '@/components/ui/button';
@@ -125,9 +126,50 @@ export default function ContactPage() {
     { icon: Award, title: 'Quality Guarantee', description: '100% satisfaction guarantee' }
   ];
 
+  const contactSchema = {
+    "@context": "https://schema.org",
+    "@type": "ContactPage",
+    "mainEntity": {
+      "@type": "Organization",
+      "name": "Softiwo",
+      "contactPoint": [
+        {
+          "@type": "ContactPoint",
+          "telephone": "+1-555-123-4567",
+          "contactType": "customer service",
+          "email": "hello@softiwo.com",
+          "availableLanguage": ["English"],
+          "hoursAvailable": {
+            "@type": "OpeningHoursSpecification", 
+            "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+            "opens": "08:00",
+            "closes": "17:00"
+          }
+        }
+      ]
+    }
+  };
+
   return (
-    <div className="flex h-screen bg-gray-50 dark:bg-gray-900 overflow-hidden">
-      <Sidebar />
+    <>
+      <Head>
+        <title>Contact Us & Get Quote - Start Your Project | Softiwo</title>
+        <meta name="description" content="Ready to start your project? Contact Softiwo for a free quote on web, mobile, or desktop app development. Response within 24 hours guaranteed." />
+        <meta name="keywords" content="contact Softiwo, get quote, free consultation, project estimate, app development quote, contact form, phone number, email, start project" />
+        <meta property="og:title" content="Contact Softiwo - Get Your Free Project Quote Today" />
+        <meta property="og:description" content="Ready to transform your idea into a powerful application? Get in touch for a free consultation and detailed project quote." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://softiwo.com/contact" />
+        <link rel="canonical" href="https://softiwo.com/contact" />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(contactSchema),
+          }}
+        />
+      </Head>
+      <div className="flex h-screen bg-gray-50 dark:bg-gray-900 overflow-hidden">
+        <Sidebar />
       {isSidebarOpen && (
         <Sidebar 
           isMobile={true} 
@@ -472,5 +514,6 @@ export default function ContactPage() {
         </main>
       </div>
     </div>
+    </>
   );
 }

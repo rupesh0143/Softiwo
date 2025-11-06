@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from 'react';
+import Head from 'next/head';
 import { motion } from 'framer-motion';
 import { Sidebar } from '@/components/Sidebar';
 import { Button } from '@/components/ui/button';
@@ -129,9 +130,47 @@ export default function TechnologiesPage() {
     return colorMap[color] || colorMap.blue;
   };
 
+  const technologiesSchema = {
+    "@context": "https://schema.org",
+    "@type": "TechArticle",
+    "headline": "Technologies & Tools Used by Softiwo",
+    "description": "Comprehensive overview of cutting-edge technologies, frameworks, and tools used for web, mobile, and desktop application development",
+    "author": {
+      "@type": "Organization",
+      "name": "Softiwo"
+    },
+    "publisher": {
+      "@type": "Organization", 
+      "name": "Softiwo",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://softiwo.com/Softiwo.png"
+      }
+    },
+    "datePublished": "2024-01-01",
+    "dateModified": "2025-11-06"
+  };
+
   return (
-    <div className="flex h-screen bg-gray-50 dark:bg-gray-900 overflow-hidden">
-      <Sidebar />
+    <>
+      <Head>
+        <title>Technologies & Tools - Modern Tech Stack | Softiwo</title>
+        <meta name="description" content="Explore our comprehensive technology stack including React, Node.js, Flutter, Python, AWS, and 50+ modern tools for web, mobile & desktop development." />
+        <meta name="keywords" content="technology stack, React, Node.js, Flutter, Python, AWS, MongoDB, PostgreSQL, mobile development tools, web development frameworks, desktop application tools, modern programming languages" />
+        <meta property="og:title" content="Modern Technology Stack & Tools | Softiwo" />
+        <meta property="og:description" content="Discover the cutting-edge technologies and frameworks we use to build exceptional applications across all platforms." />
+        <meta property="og:type" content="article" />
+        <meta property="og:url" content="https://softiwo.com/technologies" />
+        <link rel="canonical" href="https://softiwo.com/technologies" />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(technologiesSchema),
+          }}
+        />
+      </Head>
+      <div className="flex h-screen bg-gray-50 dark:bg-gray-900 overflow-hidden">
+        <Sidebar />
       {isSidebarOpen && (
         <Sidebar 
           isMobile={true} 
@@ -345,5 +384,6 @@ export default function TechnologiesPage() {
         </main>
       </div>
     </div>
+    </>
   );
 }
