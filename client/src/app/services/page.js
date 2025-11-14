@@ -1,10 +1,9 @@
 "use client";
-
 import React, { useState } from 'react';
 import Head from 'next/head';
 import { motion } from 'framer-motion';
 import { Sidebar } from '@/components/Sidebar';
-import { CreateCampaignModal } from '@/components/CreateCampaignModal';
+import { GetQuoteModal } from '@/components/GetQuoteModal';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { services, technologies } from '@/lib/data';
@@ -30,6 +29,8 @@ import {
   Target,
   Activity
 } from 'lucide-react';
+import { useRouter } from 'next/navigation';
+
 
 const iconMap = {
   Globe,
@@ -46,7 +47,8 @@ export default function ServicesPage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [selectedService, setSelectedService] = useState(null);
-
+  const router = useRouter();
+s
   const servicesSchema = {
     "@context": "https://schema.org",
     "@type": "Service",
@@ -108,9 +110,10 @@ export default function ServicesPage() {
     ]
   };
 
-  const handleCreateProject = (projectData) => {
-    console.log('Creating project:', projectData);
+  const handleGetQuote = (quoteData) => {
+    console.log('Quote request:', quoteData);
     setIsModalOpen(false);
+    // Quote request will be handled by the modal component
   };
 
   const pricingPlans = [
@@ -227,8 +230,8 @@ export default function ServicesPage() {
                 className="hidden sm:inline-flex bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 shadow-lg hover:shadow-xl transition-all duration-200 transform hover:scale-105 rounded-xl"
               >
                 <Plus className="h-4 w-4 mr-2" />
-                <span className="hidden md:inline">Start Project</span>
-                <span className="md:hidden">New</span>
+                <span className="hidden md:inline">Get Quote</span>
+                <span className="md:hidden">Quote</span>
               </Button>
             </div>
           </div>
@@ -342,11 +345,11 @@ export default function ServicesPage() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.7 + index * 0.1 }}
-                  className={`relative ${plan.popular ? 'scale-105' : ''}`}
+                  className={`relative ${plan.popular ? 'scale-105 mt-8' : 'mt-8'}`}
                 >
                   {plan.popular && (
-                    <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                      <span className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-4 py-2 rounded-full text-sm font-bold">
+                    <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 z-10">
+                      <span className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-4 py-2 rounded-full text-sm font-bold shadow-lg">
                         Most Popular
                       </span>
                     </div>
@@ -376,6 +379,7 @@ export default function ServicesPage() {
                       </ul>
                       
                       <Button 
+                        onClick={() => router.push('/contact')}
                         className={`w-full ${plan.popular ? 'bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white' : ''}`}
                         variant={plan.popular ? "default" : "outline"}
                       >
@@ -400,11 +404,20 @@ export default function ServicesPage() {
               Let's discuss your requirements and create something amazing together. Get a free consultation today.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <Button size="lg" className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-4">
+              <Button 
+                size="lg" 
+                onClick={() => setIsModalOpen(true)}
+                className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-4"
+              >
                 Get Free Quote
                 <ArrowRight className="h-5 w-5 ml-2" />
               </Button>
-              <Button variant="outline" size="lg" className="px-8 py-4">
+              <Button 
+                variant="outline" 
+                size="lg" 
+                onClick={() => router.push('/portfolio')}
+                className="px-8 py-4"
+              >
                 View Portfolio
               </Button>
             </div>
@@ -421,10 +434,10 @@ export default function ServicesPage() {
         </main>
       </div>
 
-      <CreateCampaignModal
+      <GetQuoteModal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
-        onSubmit={handleCreateProject}
+        onSubmit={handleGetQuote}
       />
     </div>
     </>

@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Sidebar } from '@/components/Sidebar';
-import { CreateCampaignModal } from '@/components/CreateCampaignModal';
+import { GetQuoteModal } from '@/components/GetQuoteModal';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { portfolio, projects } from '@/lib/data';
@@ -44,10 +44,10 @@ export default function Dashboard() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
-  const handleCreateCampaign = (campaignData) => {
-    console.log('Creating campaign:', campaignData);
+  const handleGetQuote = (quoteData) => {
+    console.log('Quote request:', quoteData);
     setIsModalOpen(false);
-    // Here you would typically save to your backend
+    // Quote request will be handled by the modal component
   };
 
   const stats = [
@@ -129,24 +129,15 @@ export default function Dashboard() {
                 />
               </div>
               
-              <Button variant="ghost" size="icon" className="relative hover:bg-gray-100/80 dark:hover:bg-gray-800/80 rounded-xl">
-                <Bell className="h-5 w-5" />
-                <span className="absolute -top-1 -right-1 h-3 w-3 bg-gradient-to-r from-red-500 to-pink-500 rounded-full animate-pulse"></span>
-              </Button>
-              
               <Button 
                 onClick={() => setIsModalOpen(true)} 
                 size="sm" 
                 className="hidden sm:inline-flex bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 shadow-lg hover:shadow-xl transition-all duration-200 transform hover:scale-105 rounded-xl"
               >
                 <Plus className="h-4 w-4 mr-2" />
-                <span className="hidden md:inline">Start Project</span>
-                <span className="md:hidden">New</span>
+                <span className="hidden md:inline">Get Quote</span>
+                <span className="md:hidden">Quote</span>
               </Button>
-              
-              <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-gradient-to-br from-blue-500 via-purple-500 to-indigo-600 flex items-center justify-center text-white font-bold text-sm sm:text-base shadow-lg hover:shadow-xl transition-all duration-200 cursor-pointer hover:scale-105">
-                JD
-              </div>
             </div>
           </div>
         </header>
@@ -520,10 +511,10 @@ export default function Dashboard() {
         </main>
       </div>
 
-      <CreateCampaignModal
+      <GetQuoteModal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
-        onSubmit={handleCreateCampaign}
+        onSubmit={handleGetQuote}
       />
     </div>
   );

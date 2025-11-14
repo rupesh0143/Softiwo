@@ -60,7 +60,7 @@ export const portfolio = {
     totalProjects: 15,
     activeProjects: 8,
     completedProjects: 39,
-    totalRevenue: "$485,000",
+    totalRevenue: "$45,000",
     clientSatisfaction: "98%",
     averageDuration: "2.5 months"
   },
