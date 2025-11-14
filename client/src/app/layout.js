@@ -7,9 +7,15 @@ export const metadata = {
     default: 'Softiwo - Professional Web, Mobile & Desktop App Development Services',
   },
   description: 'Softiwo delivers cutting-edge web applications, mobile apps (iOS/Android), and desktop software. Expert development team with 200+ successful projects. Get your free quote today!',
+  viewport: {
+    width: 'device-width',
+    initialScale: 1,
+    maximumScale: 5,
+    userScalable: true,
+  },
   keywords: [
     'web development',
-    'mobile app development', 
+    'mobile app development',
     'iOS app development',
     'Android app development',
     'desktop app development',
@@ -88,7 +94,7 @@ export const metadata = {
         url: '/android-chrome-192x192.png',
       },
       {
-        rel: 'android-chrome-512x512', 
+        rel: 'android-chrome-512x512',
         url: '/android-chrome-512x512.png',
       },
     ],
@@ -127,7 +133,7 @@ export default function RootLayout({ children }) {
     ],
     "services": [
       "Web Application Development",
-      "Mobile App Development", 
+      "Mobile App Development",
       "Desktop Application Development",
       "Custom Software Development",
       "UI/UX Design",
@@ -138,6 +144,15 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, viewport-fit=cover" />
+        <meta name="format-detection" content="telephone=no, date=no, email=no, address=no" />
+        <meta name="mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+        <meta name="theme-color" content="#3b82f6" />
+        <meta name="google-adsense-account" content="ca-pub-2605865076061410"></meta>
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2605865076061410"
+          crossOrigin="anonymous"></script>
         <script
           dangerouslySetInnerHTML={{
             __html: `

@@ -87,7 +87,7 @@ export default function BlogPage() {
         
         <div className="flex-1 flex flex-col overflow-hidden">
           {/* Header */}
-          <header className="bg-white/70 backdrop-blur-md border-b border-gray-200/50 px-3 sm:px-6 py-4 dark:bg-gray-950/70 dark:border-gray-800/50 shadow-lg">
+          <header className="bg-white/70 backdrop-blur-md border-b border-gray-200/50 px-6 sm:px-12 py-4 dark:bg-gray-950/70 dark:border-gray-800/50 shadow-lg">
             <div className="flex items-center justify-between">
               <div className="flex items-center space-x-3 sm:space-x-4 min-w-0 flex-1">
                 <button
@@ -146,7 +146,7 @@ export default function BlogPage() {
           </header>
 
           {/* Main Content */}
-          <main className="flex-1 overflow-auto p-3 sm:p-6 space-y-6 sm:space-y-8">
+          <main className="flex-1 overflow-auto p-6 sm:p-12 space-y-6 sm:space-y-8">
             {/* Hero Section */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}

@@ -3,14 +3,12 @@ import React, { useState } from 'react';
 import Head from 'next/head';
 import { motion } from 'framer-motion';
 import { Sidebar } from '@/components/Sidebar';
-import { GetQuoteModal } from '@/components/GetQuoteModal';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { services, technologies } from '@/lib/data';
 import { blogData } from '@/lib/blogData';
 import {
   Search,
-  Plus,
   Globe,
   Smartphone,
   Apple,
@@ -45,19 +43,18 @@ const iconMap = {
 };
 
 export default function ServicesPage() {
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const [selectedService, setSelectedService] = useState(null);
   const router = useRouter();
 
   // Map services to their corresponding blog slugs
   const serviceToBlogMap = {
-    'Web Application Development': 'web-application-development',
-    'Mobile App Development (iOS & Android)': 'mobile-app-development', 
-    'Desktop Application Development': 'desktop-application-development',
-    'UI/UX Design Services': 'ui-ux-design',
-    'Cloud Solutions & DevOps': 'cloud-solutions',
-    'API Development & Integration': 'api-integration'
+    'Web Applications': 'web-application-development',
+    'Android Development': 'mobile-app-development',
+    'iOS Development': 'mobile-app-development', 
+    'Desktop Applications': 'desktop-application-development',
+    'UI/UX Design': 'ui-ux-design',
+    'DevOps & Deployment': 'cloud-solutions',
+    'API Integration': 'api-integration'
   };
 
   const handleLearnMore = (service) => {
@@ -65,8 +62,8 @@ export default function ServicesPage() {
     if (blogSlug) {
       router.push(`/blog/${blogSlug}`);
     } else {
-      // Fallback to quote modal if no blog exists
-      setIsModalOpen(true);
+      // Fallback to general blog page if no specific blog exists
+      router.push('/blog');
     }
   };
   const servicesSchema = {
@@ -130,11 +127,7 @@ export default function ServicesPage() {
     ]
   };
 
-  const handleGetQuote = (quoteData) => {
-    console.log('Quote request:', quoteData);
-    setIsModalOpen(false);
-    // Quote request will be handled by the modal component
-  };
+
 
   const pricingPlans = [
     {
@@ -245,13 +238,12 @@ export default function ServicesPage() {
               </div>
               
               <Button 
-                onClick={() => setIsModalOpen(true)} 
+                onClick={() => router.push('/contact')} 
                 size="sm" 
                 className="hidden sm:inline-flex bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 shadow-lg hover:shadow-xl transition-all duration-200 transform hover:scale-105 rounded-xl"
               >
-                <Plus className="h-4 w-4 mr-2" />
-                <span className="hidden md:inline">Get Quote</span>
-                <span className="md:hidden">Quote</span>
+                <span className="hidden md:inline">Contact Us</span>
+                <span className="md:hidden">Contact</span>
               </Button>
             </div>
           </div>
@@ -292,7 +284,8 @@ export default function ServicesPage() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.1 }}
-                  className="group"
+                  className="group cursor-pointer"
+                  onClick={() => handleLearnMore(service)}
                 >
                   <Card className="h-full hover:shadow-xl transition-all duration-300 bg-white/80 backdrop-blur-sm border-gray-200/50 dark:bg-gray-900/80 dark:border-gray-800/50 overflow-hidden">
                     {/* Gradient background on hover */}
@@ -330,16 +323,13 @@ export default function ServicesPage() {
                           <Button 
                             className="w-full group-hover:bg-blue-600 group-hover:text-white transition-colors"
                             variant="outline"
-                            onClick={() => handleLearnMore(service)}
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              handleLearnMore(service);
+                            }}
                           >
-                            Learn More
+                            Read Detailed Guide
                             <ArrowRight className="h-4 w-4 ml-2 group-hover:translate-x-1 transition-transform" />
-                          </Button>
-                          <Button 
-                            className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white"
-                            onClick={() => setIsModalOpen(true)}
-                          >
-                            Get Quote
                           </Button>
                         </div>
                       </div>
@@ -432,10 +422,10 @@ export default function ServicesPage() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <Button 
                 size="lg" 
-                onClick={() => setIsModalOpen(true)}
+                onClick={() => router.push('/contact')}
                 className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-4"
               >
-                Get Free Quote
+                Contact Us
                 <ArrowRight className="h-5 w-5 ml-2" />
               </Button>
               <Button 
@@ -451,20 +441,16 @@ export default function ServicesPage() {
 
           {/* Mobile FAB */}
           <Button
-            onClick={() => setIsModalOpen(true)}
+            onClick={() => router.push('/contact')}
             className="sm:hidden fixed bottom-4 right-4 z-40 h-14 w-14 rounded-full shadow-lg"
             size="icon"
           >
-            <Plus className="h-6 w-6" />
+            <ArrowRight className="h-6 w-6" />
           </Button>
         </main>
       </div>
 
-      <GetQuoteModal
-        isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
-        onSubmit={handleGetQuote}
-      />
+
     </div>
     </>
   );

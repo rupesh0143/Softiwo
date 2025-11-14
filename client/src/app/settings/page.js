@@ -76,7 +76,7 @@ export default function Settings() {
       
       <div className="flex-1 flex flex-col overflow-hidden">
         {/* Top Bar */}
-        <header className="bg-white/50 backdrop-blur-sm border-b border-gray-200 px-3 sm:px-6 py-3 sm:py-4 dark:bg-gray-950/50 dark:border-gray-800">
+        <header className="bg-white/50 backdrop-blur-sm border-b border-gray-200 px-6 sm:px-12 py-3 sm:py-4 dark:bg-gray-950/50 dark:border-gray-800">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-3 sm:space-x-4 min-w-0 flex-1">
               <button
@@ -106,7 +106,7 @@ export default function Settings() {
         </header>
 
         {/* Main Content */}
-        <main className="flex-1 overflow-auto p-3 sm:p-6">
+        <main className="flex-1 overflow-auto p-6 sm:p-12">
           <div className="max-w-4xl mx-auto space-y-4 sm:space-y-8">
             
             {/* Profile Settings */}
