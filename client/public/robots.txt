@@ -16,6 +16,10 @@ Allow: /careers
 Allow: /pricing
 Allow: /case-studies/
 Allow: /resources/
+Allow: /blog/
+Allow: /blog/personal/
+Allow: /services/
+Allow: /portfolio/
 
 # Public authentication pages
 Allow: /login

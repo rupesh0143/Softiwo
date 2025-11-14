@@ -7,6 +7,7 @@ import { GetQuoteModal } from '@/components/GetQuoteModal';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { services, technologies } from '@/lib/data';
+import { blogData } from '@/lib/blogData';
 import {
   Search,
   Plus,
@@ -48,7 +49,26 @@ export default function ServicesPage() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [selectedService, setSelectedService] = useState(null);
   const router = useRouter();
-s
+
+  // Map services to their corresponding blog slugs
+  const serviceToBlogMap = {
+    'Web Application Development': 'web-application-development',
+    'Mobile App Development (iOS & Android)': 'mobile-app-development', 
+    'Desktop Application Development': 'desktop-application-development',
+    'UI/UX Design Services': 'ui-ux-design',
+    'Cloud Solutions & DevOps': 'cloud-solutions',
+    'API Development & Integration': 'api-integration'
+  };
+
+  const handleLearnMore = (service) => {
+    const blogSlug = serviceToBlogMap[service.title];
+    if (blogSlug) {
+      router.push(`/blog/${blogSlug}`);
+    } else {
+      // Fallback to quote modal if no blog exists
+      setIsModalOpen(true);
+    }
+  };
   const servicesSchema = {
     "@context": "https://schema.org",
     "@type": "Service",
@@ -306,14 +326,20 @@ s
                           </div>
                         </div>
                         
-                        <div className="pt-4 border-t border-gray-100 dark:border-gray-800">
+                        <div className="pt-4 border-t border-gray-100 dark:border-gray-800 space-y-2">
                           <Button 
                             className="w-full group-hover:bg-blue-600 group-hover:text-white transition-colors"
                             variant="outline"
-                            onClick={() => setSelectedService(service)}
+                            onClick={() => handleLearnMore(service)}
                           >
                             Learn More
                             <ArrowRight className="h-4 w-4 ml-2 group-hover:translate-x-1 transition-transform" />
+                          </Button>
+                          <Button 
+                            className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white"
+                            onClick={() => setIsModalOpen(true)}
+                          >
+                            Get Quote
                           </Button>
                         </div>
                       </div>
