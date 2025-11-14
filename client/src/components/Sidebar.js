@@ -11,6 +11,7 @@ import {
   BarChart3,
   Users,
   Settings,
+  BookOpen,
   Plus,
   X,
   Zap
@@ -37,6 +38,11 @@ const sidebarItems = [
     title: 'About Us',
     href: '/about',
     icon: Users,
+  },
+  {
+    title: 'Blog',
+    href: '/blog',
+    icon: BookOpen,
   },
   {
     title: 'Get Quote',
