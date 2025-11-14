@@ -16,9 +16,9 @@ export function Header() {
 
   const navItems = [
     { href: '/', label: 'Home' },
-    { href: '/dashboard', label: 'Portfolio' },
-    { href: '/campaigns', label: 'Services' },
-    { href: '/settings', label: 'Contact' },
+    { href: '/portfolio', label: 'Portfolio' },
+    { href: '/services', label: 'Services' },
+    { href: '/contact', label: 'Contact' },
   ];
 
   return (
@@ -61,7 +61,7 @@ export function Header() {
             <Moon className="h-4 w-4" />
           </div>
 
-          <Button asChild className="hidden lg:inline-flex" size="sm">
+          <Button aschild className="hidden lg:inline-flex" size="sm">
             <Link href="/settings">Get Quote</Link>
           </Button>
 
@@ -109,8 +109,8 @@ export function Header() {
               </div>
             </div>
             
-            <Button asChild className="w-full mt-4">
-              <Link href="/settings" onClick={() => setMobileMenuOpen(false)}>Get Quote</Link>
+            <Button aschild className="w-full mt-4">
+              <Link href="/contact" onClick={() => setMobileMenuOpen(false)}>Get Quote</Link>
             </Button>
           </nav>
         </motion.div>

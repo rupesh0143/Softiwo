@@ -29,9 +29,11 @@ import {
   Coffee,
   Lightbulb
 } from 'lucide-react';
+import { useRouter } from 'next/navigation';
 
 export default function AboutUsPage() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const router = useRouter();
 
   const teamMembers = [
     {
@@ -244,11 +246,20 @@ export default function AboutUsPage() {
               Since 2019, we've been helping businesses transform their ideas into powerful applications.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <Button size="lg" className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-4">
-                Join Our Team
-                <Users className="h-5 w-5 ml-2" />
+              <Button 
+                size="lg" 
+                onClick={() => router.push('/contact')}
+                className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-4"
+              >
+                Start Your Project
+                <ArrowRight className="h-5 w-5 ml-2" />
               </Button>
-              <Button variant="outline" size="lg" className="px-8 py-4">
+              <Button 
+                variant="outline" 
+                size="lg" 
+                onClick={() => router.push('/portfolio')}
+                className="px-8 py-4"
+              >
                 Our Work
                 <ArrowRight className="h-4 w-4 ml-2" />
               </Button>
@@ -459,13 +470,22 @@ export default function AboutUsPage() {
               Let's turn your ideas into reality. We're here to help you create exceptional digital experiences.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <Button size="lg" className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-4">
+              <Button 
+                size="lg" 
+                onClick={() => router.push('/contact')}
+                className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-4"
+              >
                 Start Your Project
                 <ArrowRight className="h-5 w-5 ml-2" />
               </Button>
-              <Button variant="outline" size="lg" className="px-8 py-4">
+              <Button 
+                variant="outline" 
+                size="lg" 
+                onClick={() => window.open('tel:+918800677345', '_self')}
+                className="px-8 py-4"
+              >
                 <Phone className="h-4 w-4 mr-2" />
-                Schedule a Call
+                Call Now (+91 8800677345)
               </Button>
             </div>
           </motion.div>

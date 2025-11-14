@@ -20,12 +20,12 @@ import Image from 'next/image';
 const sidebarItems = [
   {
     title: 'Portfolio',
-    href: '/dashboard',
+    href: '/portfolio',
     icon: LayoutDashboard,
   },
   {
     title: 'Services',
-    href: '/campaigns',
+    href: '/services',
     icon: Target,
   },
   {
@@ -53,12 +53,14 @@ export function Sidebar({ className, isMobile = false, onClose }) {
       <div className="px-3 sm:px-4 py-2">
         <div className="flex items-center justify-between mb-6 sm:mb-8">
           <div className="flex items-center space-x-3 min-w-0">
+            <Link href="/" className="flex-shrink-0 flex items-center">
             <Image
              src="/Softiwo01.png"
              width={130}
              height={50}
              alt='Softiwo logo'
             />
+          </Link>
           </div>
           {isMobile && onClose && (
             <button

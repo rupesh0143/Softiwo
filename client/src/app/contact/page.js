@@ -28,11 +28,13 @@ import {
   ArrowRight,
   Zap,
   Shield,
-  Award
+  Award,
+  Loader2
 } from 'lucide-react';
 
 export default function ContactPage() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -59,6 +61,44 @@ export default function ContactPage() {
         ? prev.requirements.filter(r => r !== requirement)
         : [...prev.requirements, requirement]
     }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    
+    try {
+      const response = await fetch('/api/send-contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        // Reset form
+        setFormData({
+          name: '',
+          email: '',
+          company: '',
+          phone: '',
+          projectType: '',
+          budget: '',
+          timeline: '',
+          message: '',
+          requirements: []
+        });
+        alert('Message sent successfully! We\'ll get back to you within 24 hours.');
+      } else {
+        throw new Error('Failed to send message');
+      }
+    } catch (error) {
+      console.error('Error sending message:', error);
+      alert('Failed to send message. Please try again or contact us directly.');
+    } finally {
+      setLoading(false);
+    }
   };
 
   const projectTypes = [
@@ -100,8 +140,8 @@ export default function ContactPage() {
       icon: Phone,
       title: 'Call Us',
       info: '+91 8800677345',
-      description: 'Mon-Fri from 8am to 5pm',
-      action: 'tel:+91 8800677345'
+      description: 'Mon-Fri from 9am to 6pm IST',
+      action: 'tel:+918800677345'
     },
     {
       icon: MapPin,
@@ -203,10 +243,11 @@ export default function ContactPage() {
             <div className="flex items-center space-x-2 sm:space-x-4 shrink-0">
               <Button 
                 size="sm" 
+                onClick={() => window.open('tel:+918800677345', '_self')}
                 className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 shadow-lg hover:shadow-xl transition-all duration-200 transform hover:scale-105 rounded-xl"
               >
-                <Calendar className="h-4 w-4 mr-2" />
-                <span className="hidden md:inline">Schedule Call</span>
+                <Phone className="h-4 w-4 mr-2" />
+                <span className="hidden md:inline">Call Now</span>
                 <span className="md:hidden">Call</span>
               </Button>
             </div>
@@ -265,9 +306,10 @@ export default function ContactPage() {
                     Tell us about your project and we'll provide a detailed quote within 24 hours
                   </CardDescription>
                 </CardHeader>
-                <CardContent className="space-y-6">
-                  {/* Basic Information */}
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <CardContent>
+                  <form onSubmit={handleSubmit} className="space-y-6">
+                    {/* Basic Information */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
                       <label className="block text-sm font-medium mb-2">Full Name *</label>
                       <input
@@ -421,13 +463,25 @@ export default function ContactPage() {
                     />
                   </div>
 
-                  <Button 
-                    size="lg" 
-                    className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white"
-                  >
-                    <Send className="h-5 w-5 mr-2" />
-                    Get Free Quote
-                  </Button>
+                    <Button 
+                      type="submit"
+                      size="lg" 
+                      disabled={loading}
+                      className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white"
+                    >
+                      {loading ? (
+                        <>
+                          <Loader2 className="h-5 w-5 mr-2 animate-spin" />
+                          Sending...
+                        </>
+                      ) : (
+                        <>
+                          <Send className="h-5 w-5 mr-2" />
+                          Send Message
+                        </>
+                      )}
+                    </Button>
+                  </form>
                 </CardContent>
               </Card>
             </motion.div>
@@ -503,9 +557,13 @@ export default function ContactPage() {
                   <p className="text-sm mb-4 text-blue-100">
                     Schedule a free 30-minute consultation call
                   </p>
-                  <Button variant="secondary" className="w-full">
-                    <Calendar className="h-4 w-4 mr-2" />
-                    Schedule Call Now
+                  <Button 
+                    variant="secondary" 
+                    onClick={() => window.open('tel:+918800677345', '_self')}
+                    className="w-full"
+                  >
+                    <Phone className="h-4 w-4 mr-2" />
+                    Call Now
                   </Button>
                 </CardContent>
               </Card>

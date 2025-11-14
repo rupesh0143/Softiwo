@@ -3,6 +3,7 @@
 import React from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
+import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { Header } from '@/components/Header';
 import { Button } from '@/components/ui/button';
@@ -103,7 +104,7 @@ export default function Home() {
       <Header />
       
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center px-4 overflow-hidden">
+      <section className="relative min-h-screen flex items-center justify-center px-6 sm:px-8 lg:px-12 xl:px-16 overflow-hidden">
         {/* Animated Background */}
         <div className="absolute inset-0 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 dark:from-slate-900 dark:via-blue-950 dark:to-indigo-950" />
         <div className="absolute inset-0">
@@ -112,7 +113,7 @@ export default function Home() {
           <div className="absolute -bottom-8 left-20 w-72 h-72 bg-pink-300 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-4000 dark:bg-pink-900 dark:opacity-30" />
         </div>
         
-        <div className="relative container mx-auto text-center px-4">
+        <div className="relative container mx-auto text-center px-6 sm:px-8 lg:px-12 xl:px-20">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -147,7 +148,7 @@ export default function Home() {
             
             <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-16">
               <Button 
-                asChild 
+                aschild 
                 size="lg" 
                 className="text-lg px-8 py-6 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200 w-full sm:w-auto"
               >
@@ -194,21 +195,31 @@ export default function Home() {
               {/* Glow Effect */}
               <div className="absolute inset-0 bg-gradient-to-r from-blue-600/30 via-purple-600/30 to-indigo-600/30 rounded-3xl blur-3xl transform rotate-1" />
               <div className="relative bg-white/20 backdrop-blur-lg border border-white/30 dark:bg-gray-800/20 dark:border-gray-700/30 rounded-3xl p-3 shadow-2xl">
-                <div className="w-full h-80 sm:h-96 lg:h-[500px] bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-900 rounded-2xl shadow-inner flex items-center justify-center overflow-hidden relative">
-                  {/* Mock Dashboard Elements */}
-                  <div className="absolute inset-4 space-y-4">
-                    <div className="h-12 bg-white/80 dark:bg-gray-700/80 rounded-lg flex items-center px-4">
-                      <div className="w-6 h-6 bg-gradient-to-br from-blue-500 to-purple-600 rounded" />
-                      <div className="ml-3 h-4 bg-gray-300 dark:bg-gray-600 rounded flex-1" />
+                <div className="w-full h-80 sm:h-96 lg:h-[500px] bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-800 dark:to-gray-900 rounded-2xl shadow-inner flex items-center justify-center overflow-hidden relative group">
+                  {/* Featured Project Image */}
+                  <div className="relative w-full h-full p-4">
+                    <div className="relative w-full h-full rounded-xl overflow-hidden shadow-lg">
+                      <Image
+                        src="/Mandi1.png"
+                        alt="Featured Project - E-Commerce Platform"
+                        fill
+                        className="object-cover group-hover:scale-105 transition-transform duration-500"
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 60vw"
+                      />
+                      
+                      {/* Overlay */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                      
+                      {/* Project Info */}
+                      <div className="absolute bottom-4 left-4 right-4 text-white transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+                        <h3 className="text-lg font-semibold mb-1">Featured Project</h3>
+                        <p className="text-sm opacity-90">Modern Ledger Platform</p>
+                      </div>
                     </div>
-                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                      <div className="h-20 bg-white/80 dark:bg-gray-700/80 rounded-lg" />
-                      <div className="h-20 bg-white/80 dark:bg-gray-700/80 rounded-lg" />
-                      <div className="h-20 bg-white/80 dark:bg-gray-700/80 rounded-lg" />
-                    </div>
-                    <div className="h-40 bg-white/80 dark:bg-gray-700/80 rounded-lg" />
                   </div>
-                  <div className="text-gray-500 dark:text-gray-400 text-xl font-semibold">
+                  
+                  {/* Fallback text when image is loading */}
+                  <div className="absolute inset-0 flex items-center justify-center text-gray-500 dark:text-gray-400 text-xl font-semibold opacity-0">
                     Application Portfolio
                   </div>
                 </div>
@@ -224,14 +235,16 @@ export default function Home() {
           transition={{ delay: 1.5 }}
           className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
         >
+          <Link href="https://client.softiwo.com">
           <div className="w-6 h-10 border-2 border-gray-400 dark:border-gray-600 rounded-full flex justify-center">
             <div className="w-1 h-3 bg-gray-400 dark:bg-gray-600 rounded-full mt-2 animate-bounce" />
           </div>
+          </Link>
         </motion.div>
       </section>
 
       {/* Features Section */}
-      <section className="py-24 px-4 bg-white dark:bg-gray-950">
+      <section className="py-24 px-6 sm:px-8 lg:px-12 xl:px-16 bg-white dark:bg-gray-950">
         <div className="container mx-auto">
           <div className="text-center mb-16">
             <motion.div
@@ -301,7 +314,7 @@ export default function Home() {
       </section>
 
       {/* Testimonials Section */}
-      <section className="py-24 px-4 bg-gradient-to-br from-blue-50 to-purple-50 dark:from-gray-900 dark:to-blue-950">
+      <section className="py-24 px-6 sm:px-8 lg:px-12 xl:px-16 bg-gradient-to-br from-blue-50 to-purple-50 dark:from-gray-900 dark:to-blue-950">
         <div className="container mx-auto">
           <div className="text-center mb-16">
             <motion.div
@@ -353,7 +366,7 @@ export default function Home() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-24 px-4">
+      <section className="py-24 px-6 sm:px-8 lg:px-12 xl:px-16">
         <div className="container mx-auto text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -368,7 +381,7 @@ export default function Home() {
               Let's transform your ideas into powerful applications that drive business growth
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <Button asChild size="lg" className="text-lg px-8 py-6">
+              <Button aschild size="lg" className="text-lg px-8 py-6">
                 <Link href="/settings">
                   Get Free Quote
                 </Link>
@@ -383,7 +396,7 @@ export default function Home() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-gray-950 text-gray-300 py-16 px-4">
+      <footer className="bg-gray-950 text-gray-300 py-16 px-6 sm:px-8 lg:px-12 xl:px-16">
         <div className="container mx-auto">
           <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-8">
             <div>

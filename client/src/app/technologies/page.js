@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import Head from 'next/head';
 import { motion } from 'framer-motion';
 import { Sidebar } from '@/components/Sidebar';
+import { GetQuoteModal } from '@/components/GetQuoteModal';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { technologies } from '@/lib/data';
@@ -25,10 +26,19 @@ import {
   CheckCircle,
   ExternalLink
 } from 'lucide-react';
+import { useRouter } from 'next/navigation';
 
 export default function TechnologiesPage() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState('All');
+  const router = useRouter();
+
+  const handleGetQuote = (quoteData) => {
+    console.log('Quote request:', quoteData);
+    setIsModalOpen(false);
+    // Quote request will be handled by the modal component
+  };
 
   const techCategories = [
     'All',
@@ -213,6 +223,7 @@ export default function TechnologiesPage() {
               
               <Button 
                 size="sm" 
+                onClick={() => router.push('/contact')}
                 className="hidden sm:inline-flex bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 shadow-lg hover:shadow-xl transition-all duration-200 transform hover:scale-105 rounded-xl"
               >
                 <Plus className="h-4 w-4 mr-2" />
@@ -371,18 +382,32 @@ export default function TechnologiesPage() {
               Don't see the technology you need? We're always learning and adapting to new technologies to meet our clients' requirements.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <Button size="lg" className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-4">
-                Discuss Your Needs
+              <Button 
+                size="lg" 
+                onClick={() => setIsModalOpen(true)}
+                className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-4"
+              >
+                Get Quote
                 <ArrowRight className="h-5 w-5 ml-2" />
               </Button>
-              <Button variant="outline" size="lg" className="px-8 py-4">
-                View Case Studies
+              <Button 
+                variant="outline" 
+                size="lg" 
+                onClick={() => router.push('/portfolio')}
+                className="px-8 py-4"
+              >
+                View Portfolio
                 <ExternalLink className="h-4 w-4 ml-2" />
               </Button>
             </div>
           </motion.div>
         </main>
       </div>
+      <GetQuoteModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        onSubmit={handleGetQuote}
+      />
     </div>
     </>
   );
