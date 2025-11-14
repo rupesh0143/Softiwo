@@ -96,7 +96,7 @@ export default function MobileAppDevelopmentBlog() {
         
         <div className="flex-1 flex flex-col overflow-hidden">
           {/* Header */}
-          <header className="bg-white/70 backdrop-blur-md border-b border-gray-200/50 px-3 sm:px-6 py-4 dark:bg-gray-950/70 dark:border-gray-800/50 shadow-lg">
+          <header className="bg-white/70 backdrop-blur-md border-b border-gray-200/50 px-6 sm:px-12 py-4 dark:bg-gray-950/70 dark:border-gray-800/50 shadow-lg">
             <div className="flex items-center justify-between">
               <div className="flex items-center space-x-3 sm:space-x-4 min-w-0 flex-1">
                 <button
@@ -138,7 +138,7 @@ export default function MobileAppDevelopmentBlog() {
 
           {/* Main Content */}
           <main className="flex-1 overflow-auto">
-            <article className="max-w-4xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
+            <article className="max-w-4xl mx-auto px-8 sm:px-12 py-8 sm:py-12">
               {/* Article Header */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}

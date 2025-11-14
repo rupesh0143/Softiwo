@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import '../styles/mobile-responsive.css';
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -56,16 +57,67 @@ body {
   }
 }
 
+/* Very gentle blob animation for mobile */
+@keyframes blob-mobile {
+  0% {
+    transform: translate(0px, 0px) scale(1);
+  }
+  25% {
+    transform: translate(8px, -12px) scale(1.02);
+  }
+  50% {
+    transform: translate(-6px, 8px) scale(0.98);
+  }
+  75% {
+    transform: translate(4px, -4px) scale(1.01);
+  }
+  100% {
+    transform: translate(0px, 0px) scale(1);
+  }
+}
+
 .animate-blob {
   animation: blob 7s infinite;
 }
 
+/* Disable blob animations on mobile completely to prevent fast movement issues */
+.animate-blob-slow {
+  animation: none;
+  opacity: 0.4;
+}
+
+/* Enable very slow animations only on larger screens */
+@media (min-width: 768px) {
+  .animate-blob-slow {
+    animation: blob-mobile 60s infinite;
+    opacity: 0.7;
+  }
+}
+
+/* Desktop gets normal blob animation on large screens */
+@media (min-width: 1024px) {
+  .animate-blob-slow {
+    animation: blob 40s infinite;
+  }
+}
+
+/* Respect reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .animate-blob, .animate-blob-slow {
+    animation: none !important;
+  }
+}
+
 .animation-delay-2000 {
-  animation-delay: 2s;
+  animation-delay: 3s;
+}
+
+.animation-delay-3000 {
+  animation-delay: 5s;
 }
 
 .animation-delay-4000 {
-  animation-delay: 4s;
+  animation-delay: 7s;
 }
 
 /* Custom button animations */
@@ -76,4 +128,61 @@ body {
 .btn-animate:hover {
   transform: translateY(-2px);
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* Consistent spacing utilities - Mobile first responsive */
+.page-container {
+  @apply px-4 sm:px-6 md:px-8 lg:px-12 xl:px-20 2xl:px-32;
+}
+
+.section-spacing {
+  @apply py-12 px-4 sm:py-16 sm:px-6 md:py-20 md:px-8 lg:py-24 lg:px-12 xl:px-20 2xl:px-32;
+}
+
+.header-spacing {
+  @apply px-4 py-3 sm:px-6 sm:py-4 lg:px-12;
+}
+
+.content-spacing {
+  @apply p-4 sm:p-6 lg:p-8 xl:p-12;
+}
+
+.article-spacing {
+  @apply px-4 py-6 sm:px-6 sm:py-8 md:px-8 md:py-10 lg:px-12 lg:py-12;
+}
+
+/* Mobile-optimized typography */
+.mobile-heading {
+  @apply text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl;
+}
+
+.mobile-subheading {
+  @apply text-lg sm:text-xl md:text-2xl lg:text-3xl;
+}
+
+.mobile-body {
+  @apply text-sm sm:text-base lg:text-lg;
+}
+
+/* Touch-friendly interactive elements */
+.touch-target {
+  @apply min-h-[44px] min-w-[44px];
+}
+
+/* Responsive grid utilities */
+.responsive-grid {
+  @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4;
+}
+
+.responsive-grid-2 {
+  @apply grid grid-cols-1 md:grid-cols-2;
+}
+
+.responsive-grid-3 {
+  @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3;
+}
+
+/* Container max-widths for different screen sizes */
+.container-responsive {
+  @apply w-full max-w-screen-sm sm:max-w-screen-md md:max-w-screen-lg lg:max-w-screen-xl xl:max-w-screen-2xl mx-auto;
 }

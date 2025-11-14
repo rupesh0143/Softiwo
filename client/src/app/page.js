@@ -108,9 +108,9 @@ export default function Home() {
         {/* Animated Background */}
         <div className="absolute inset-0 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 dark:from-slate-900 dark:via-blue-950 dark:to-indigo-950" />
         <div className="absolute inset-0">
-          <div className="absolute top-0 -left-4 w-72 h-72 bg-purple-300 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob dark:bg-purple-900 dark:opacity-30" />
-          <div className="absolute top-0 -right-4 w-72 h-72 bg-yellow-300 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000 dark:bg-yellow-900 dark:opacity-30" />
-          <div className="absolute -bottom-8 left-20 w-72 h-72 bg-pink-300 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-4000 dark:bg-pink-900 dark:opacity-30" />
+          <div className="absolute top-0 -left-4 w-72 h-72 bg-purple-300 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob-slow sm:animate-blob  animation-delay-3000 dark:bg-purple-900 dark:opacity-30" />
+          <div className="absolute top-0 -right-4 w-72 h-72 bg-yellow-300 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob-slow sm:animate-blob animation-delay-2000 dark:bg-yellow-900 dark:opacity-30" />
+          <div className="absolute -bottom-8 left-20 w-72 h-72 bg-pink-300 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob-slow sm:animate-blob animation-delay-4000 dark:bg-pink-900 dark:opacity-30" />
         </div>
         
         <div className="relative container mx-auto text-center px-6 sm:px-8 lg:px-12 xl:px-20">
@@ -152,7 +152,7 @@ export default function Home() {
                 size="lg" 
                 className="text-lg px-8 py-6 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200 w-full sm:w-auto"
               >
-                <Link href="/dashboard">
+                <Link href="/portfolio">
                   View Portfolio
                   {/* <ArrowRight className="ml-2 h-5 w-5" /> */}
                 </Link>

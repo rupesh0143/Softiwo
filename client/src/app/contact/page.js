@@ -219,11 +219,11 @@ export default function ContactPage() {
       
       <div className="flex-1 flex flex-col overflow-hidden">
         {/* Header */}
-        <header className="bg-white/70 backdrop-blur-md border-b border-gray-200/50 px-3 sm:px-6 py-4 dark:bg-gray-950/70 dark:border-gray-800/50 shadow-lg">
+        <header className="bg-white/70 backdrop-blur-md border-b border-gray-200/50 px-4 sm:px-6 lg:px-12 py-3 sm:py-4 dark:bg-gray-950/70 dark:border-gray-800/50 shadow-lg">
           <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-3 sm:space-x-4 min-w-0 flex-1">
+            <div className="flex items-center space-x-2 sm:space-x-3 lg:space-x-4 min-w-0 flex-1">
               <button
-                className="lg:hidden p-2 rounded-xl hover:bg-gray-100/80 dark:hover:bg-gray-800/80 shrink-0 transition-all duration-200"
+                className="lg:hidden p-1.5 sm:p-2 rounded-xl hover:bg-gray-100/80 dark:hover:bg-gray-800/80 shrink-0 transition-all duration-200 touch-target"
                 onClick={() => setIsSidebarOpen(true)}
                 aria-label="Open sidebar"
               >
@@ -231,23 +231,23 @@ export default function ContactPage() {
               </button>
               
               <div className="min-w-0 flex-1">
-                <h1 className="text-xl sm:text-3xl font-bold bg-gradient-to-r from-gray-900 to-gray-600 bg-clip-text text-transparent dark:from-gray-100 dark:to-gray-300 truncate">
+                <h1 className="text-lg sm:text-xl lg:text-2xl xl:text-3xl font-bold bg-gradient-to-r from-gray-900 to-gray-600 bg-clip-text text-transparent dark:from-gray-100 dark:to-gray-300 truncate">
                   Get Quote & Contact
                 </h1>
-                <p className="text-sm text-gray-600 dark:text-gray-400 hidden sm:block font-medium">
+                <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-400 hidden sm:block font-medium mt-0.5">
                   Let's discuss your project and bring your ideas to life
                 </p>
               </div>
             </div>
             
-            <div className="flex items-center space-x-2 sm:space-x-4 shrink-0">
+            <div className="flex items-center space-x-2 sm:space-x-3 lg:space-x-4 shrink-0">
               <Button 
                 size="sm" 
                 onClick={() => window.open('tel:+918800677345', '_self')}
-                className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 shadow-lg hover:shadow-xl transition-all duration-200 transform hover:scale-105 rounded-xl"
+                className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 shadow-lg hover:shadow-xl transition-all duration-200 transform hover:scale-105 rounded-xl touch-target"
               >
-                <Phone className="h-4 w-4 mr-2" />
-                <span className="hidden md:inline">Call Now</span>
+                <Phone className="h-3 w-3 sm:h-4 sm:w-4 sm:mr-2" />
+                <span className="hidden sm:inline text-xs sm:text-sm">Call Now</span>
                 <span className="md:hidden">Call</span>
               </Button>
             </div>
@@ -255,7 +255,7 @@ export default function ContactPage() {
         </header>
 
         {/* Main Content */}
-        <main className="flex-1 overflow-auto p-3 sm:p-6 space-y-6 sm:space-y-8">
+        <main className="flex-1 overflow-auto p-6 sm:p-12 space-y-6 sm:space-y-8">
           {/* Hero Section */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
