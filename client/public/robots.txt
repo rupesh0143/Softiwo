@@ -1,12 +1,110 @@
+# Softiwo - Leading Influencer Marketing Platform
+# Connecting brands with verified creators for authentic campaigns
+
 User-agent: *
 Allow: /
 
-# Sitemap
-Sitemap: https://softiwo.com/sitemap.xml
+# High-value SEO pages - Priority crawling
+Allow: /
+Allow: /dashboard
+Allow: /about
+Allow: /campaigns
+Allow: /contact
+Allow: /settings
+Allow: /technologies
+Allow: /careers
+Allow: /pricing
+Allow: /case-studies/
+Allow: /resources/
 
-# Crawl-delay
+# Public authentication pages
+Allow: /login
+Allow: /registration
+Allow: /forgot-password
+
+# Legal and policy pages
+Allow: /privacy
+Allow: /terms
+Allow: /cookie-policy
+Allow: /faq
+
+# Disallow private and sensitive areas
+Disallow: /admin/
+Disallow: /api/
+Disallow: /dashboard/
+Disallow: /agent/dashboard
+Disallow: /influencer/dashboard
+Disallow: /profile/
+Disallow: /settings/
+Disallow: /payment/
+Disallow: /message-history/
+Disallow: /notifications/
+Disallow: /analytics/
+
+# Technical directories
+Disallow: /_next/
+Disallow: /static/
+Disallow: /.well-known/
+Disallow: /node_modules/
+Disallow: /build/
+
+# Block common attack vectors
+Disallow: /wp-admin/
+Disallow: /wp-content/
+Disallow: /wp-includes/
+Disallow: /administrator/
+Disallow: /phpmyadmin/
+Disallow: /xmlrpc.php
+Disallow: /*.php$
+Disallow: /*.cgi$
+
+# Block unwanted parameters
+Disallow: /*?utm_*
+Disallow: /*?ref=*
+Disallow: /*?source=*
+Disallow: /*&utm_*
+Disallow: /*&ref=*
+Disallow: /*&source=*
+
+# Specific bot instructions
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0.5
+
+User-agent: Bingbot
+Allow: /
 Crawl-delay: 1
 
-# Disallow specific paths (if any)
-# Disallow: /admin/
-# Disallow: /private/
+User-agent: facebookexternalhit
+Allow: /
+
+User-agent: Twitterbot
+Allow: /
+
+User-agent: LinkedInBot
+Allow: /
+
+# Block aggressive crawlers
+User-agent: AhrefsBot
+Crawl-delay: 10
+
+User-agent: SemrushBot
+Crawl-delay: 10
+
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: DotBot
+Disallow: /
+
+# Sitemaps - Multiple for better indexing
+Sitemap: https://softiwo.com/sitemap.xml
+Sitemap: https://softiwo.com/sitemap-blog.xml
+Sitemap: https://softiwo.com/sitemap-images.xml
+Sitemap: https://softiwo.com/sitemap-videos.xml
+
+# Default crawl settings
+Crawl-delay: 1
+
+# Canonical host
+Host: https://softiwo.com
